@@ -4,7 +4,7 @@ r = float(input("Enter the rate of interest in %: "))
 t = float(input("Enter the period of investment in years: "))
 n = float(input("Enter number of times compounded: "))
 
-#formal for computing the final value of investment which is p
+#formula for computing the final value of investment which is p
 p = c*(1+r/n)**(t*n)
 
 #printing the final value
