@@ -1,7 +1,7 @@
 print("------------------------Eligibility to Vote-------------------------")
 try:
     age = int(input('Enter your Age: '))
-#conditioning for input of age
+#conditioning for input of age to tell if someone of a certain age can vote
     if age >= 18:
         print('You can Vote!!')
     elif age > 0:
@@ -11,4 +11,5 @@ try:
     else:
         pass
 except:
+#return this message in case of any errors that will occur during execution
     print('INVALID INPUT, Enter your age')
