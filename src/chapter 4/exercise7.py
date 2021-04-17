@@ -1,9 +1,7 @@
-try:
-    # request score from user between 0.0 and 1.0
-    score = float(input('Enter the score: '))
-
-    #setting conditions for score in the range of 0.0 to 1.0
-    if 0.0 <= score <= 1.0:
+#function for computing score
+def computescore(score1):
+    # setting conditions for score in the range of 0.0 to 1.0
+    if 0.0 <= score1 <= 1.0:
         if score >= 0.9:
             print('Your score is "A"')
         elif score >= 0.8:
@@ -19,6 +17,11 @@ try:
     else:
         print('Error, you have exceeded the score range')
         print('input score between 0.0 and 1.0')
+
+try:
+    # request score from user between 0.0 and 1.0
+    score = float(input('Enter the score: '))
+    computescore(score)
 
 #capting any errors that may arise due to wrong user input
 except:
