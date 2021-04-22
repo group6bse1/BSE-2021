@@ -28,7 +28,7 @@ amount = amount-(x*1)
 x = amount//0.25
 print(x, "quarters")
 
-amount = amount-(x*0.25)
+ amount = amount-(x*0.25)
 x = amount//0.1
 print(x, "dimes")
 
