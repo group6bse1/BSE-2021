@@ -3,7 +3,7 @@ import sys
 def centds(a):
     #function for breaking the price into dollars and cents
     x = float(a)//1
-    y = (float(a)%1)*100
+    y = (float(a) % 1)*100
     print('Amount due is: ', int(x),'dollars and ',int(y) ,'cents')
 
 nickels = 25
@@ -27,14 +27,15 @@ print(fives, 'Fives')
 
 while True:
         price1 = input('Enter purchase price or "q" to quit: ')
-        try:
-            if price1 == 'q' or price1 == 'Q':
+        #try:
+        if str(price1) == 'q' or str(price1) == 'Q':
                 sys.exit()
-            elif round(float(price1) % 0.05, 2) != 0.05:
-                if round(float(price1) % 0.05, 2) < 0:
-                    continue
-                print('Illegal Input, Enter price which a multiple of 5 Cents and is a non-negative!!')
-            break
+        try:
+            if round(float(price1) % 0.05, 2) == 0.05:
+                if round(float(price1) % 0.05, 2) > 0:
+                    break
+            print('Illegal Input, Enter price which a multiple of 5 Cents and is a non-negative!!')
+            continue
         except:
             print('Invalid input, try again!!')
 
