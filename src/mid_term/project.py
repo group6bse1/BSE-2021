@@ -58,7 +58,7 @@ while True:
                 bill(code, initial, final, Gallons, Bill)
     else:
         pass 
-print("BYE....")
+print("Thank you....")
 
 
         
