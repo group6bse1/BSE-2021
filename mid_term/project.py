@@ -1,87 +1,63 @@
-# water utility billing software
-
-def compute_gallons(a, b):  # Function for calculating the amount of water in gallons
-    x = (b - a)
-    if x < 0:
-        x = (x + 999999999)     # when x value is a negative number, add it to last number 999999999
-        x = (x + 1)/10  # then add 1 since meter has 9 digits which are 1 billion mathematically from 0 to 999999999
+def gallons(a, b):   # Computing gallons used by customer.
+    # a is the initial meter reading
+    # b is the final meter reading 
+    c = (b-a)
+    if c < 0:
+        c = (c + 1000000000)/10     # add 1 billion to 'c' since from 0 to 999999999 is 1 billion times on the meter
     else:
         pass
-    return x
+    return c
 
 
-def final_display(a, b, c, d, f):   # Function for displaying customer detail
-    print('--------------------------------------------------------------------------------')
-    print('Customer Code: ', a)
-    print('Customer Beginning Meter Reading: ', b)
-    print('Customer Ending Meter Reading: ', c)
-    print('Gallons of Water Consumed: ', d)
-    print('Bill Amount: $', float(round(f, 2)))
-    print('--------------------------------------------------------------------------------')
+def bill(g, f, l, a, p):    # Final display
+    print('------------------------------------------------------------')
+    print("Customer's code: ", g)
+    print("Beginning meter reading: ", f)
+    print("Ending meter reading: ", l)
+    print("Gallons of water used by customer: ", a)
+    print("Amount billed to customer: $", float(round(p, 2)))
 
 
-print('                         Water Billing System                         ')
-print('------------------------------------------------------------------------------------')
-code1 = ['r', 'c', 'i']
-
+print("--------------------WATER BILLING SOFTWARE-----------------------")
+codes1 = ['r', 'c', 'i']
 while True:
-    customer_code = input('Enter Customer Code: ')
-    customer_code = customer_code.lower()  # changing any possible customer codes in uppercase to lowercase
-    if customer_code not in code1:
+    code = str(input("Please enter customer's code: "))   # Customer's code e.g c,r,i
+    code = code.lower()   # accepting any letter case and converting it to standard lower case
+    if code not in codes1:
         break
     else:
         pass
+    initial = int(input("Please enter beginning meter reading: "))
+    final = int(input("Please enter ending meter reading: "))
 
-    while True:
-        try:
-            b_mtreading = int(input('Enter Beginning meter Reading: '))
-            if b_mtreading >= 0 and b_mtreading <=999999999:
-                break
-            else:
-                print('Meter reading exceeded range, try again!!')
-        except ValueError:
-            print('Input is invalid, try again!!')
-    while True:
-        try:
-            e_mtreading = int(input('Enter ending meter Reading: '))
-            if e_mtreading >= 0 and e_mtreading <= 999999999:
-                break
-            else:
-                print('Meter number exceeded range, try again!!')
-        except ValueError:
-            print('Invalid input, try again')
-    if customer_code in code1:
-        if customer_code == code1[0]:   # check if the customer code 'r' for resident is there in the list
-            if b_mtreading >= 0 and e_mtreading >= 0:
-                gallons = compute_gallons(b_mtreading, e_mtreading)
-                amount = 5 + (gallons*0.0005)
-                final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-            else:
-                print('Meter reading not a positive number, try again!!')
-        if customer_code == code1[1]:   # check if the customer code 'c' for commercial is there in the list
-            if b_mtreading >= 0 and e_mtreading >= 0:
-                gallons = compute_gallons(b_mtreading, e_mtreading)
-                if gallons <= 4000000:
-                    amount = 1000
-                    final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-                elif gallons > 4000000:
-                    amount = 1000 + ((gallons-4000000)*0.00025)
-                    final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-            else:
-                print('Meter reading not a positive number, try again!!')
-        if customer_code == code1[2]:   # checking if the customer code 'i' for industrial is in the list
-            if b_mtreading >= 0 and e_mtreading >= 0:
-                gallons = compute_gallons(b_mtreading, e_mtreading)
-                if gallons <= 4000000:
-                    amount = 1000
-                    final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-                elif gallons > 4000000 and gallons <= 10000000:
-                    amount = 2000
-                    final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-                elif gallons > 10000000:
-                    amount = 2000 + ((gallons-10000000)*0.00025)
-                    final_display(customer_code, b_mtreading, e_mtreading, gallons, amount)
-            else:
-                print('Meter reading not a positive number, try again!!')
-print('------------------------------------------------------------------------------')
-print('Bye... \n******(C) Group 6*****')
+    if code == codes1[0]:   # computing residential bill
+        if initial >= 0 and final >= 0:
+            Gallons = gallons(initial, final)
+            Bill = 5.00 + (Gallons*0.0005)
+            bill(code, initial, final, Gallons, Bill)
+    elif code == codes1[1]:     # computing commercial bill
+         if initial >= 0 and final >= 0:
+            Gallons = gallons(initial, final)
+            if Gallons <= 4000000:
+                Bill = 1000
+                bill(code, initial, final, Gallons, Bill)
+            elif Gallons > 4000000:
+                Bill = (1000 + (0.00025*(Gallons-4000000)))
+                bill(code, initial, final, Gallons, Bill)
+    elif code == codes1[2]:     # computing industrial bill
+        if initial >= 0 and final >= 0:
+            Gallons = gallons(initial, final)
+            if Gallons <= 4000000:
+                Bill = 1000
+                bill(code, initial, final, Gallons, Bill)
+            elif Gallons > 4000000 and Gallons <= 10000000:
+                Bill = 2000
+                bill(code, initial, final, Gallons, Bill)
+            elif Gallons > 10000000:
+                Bill = (2000 + (Gallons-10000000)*0.00025)
+                bill(code, initial, final, Gallons, Bill)
+    else:
+        pass
+print('------------------------------------------------------------')
+print("Thank you....")
+print('   (c) Group 6    ')
