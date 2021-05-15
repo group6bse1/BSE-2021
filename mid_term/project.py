@@ -39,22 +39,22 @@ while True:
          if initial >= 0 and final >= 0:
             Gallons = gallons(initial, final)
             if Gallons <= 4000000:
-                Bill = 1000
+                Bill = 1000.00
                 bill(code, initial, final, Gallons, Bill)
             elif Gallons > 4000000:
-                Bill = (1000 + (0.00025*(Gallons-4000000)))
+                Bill = (1000.00 + (0.00025*(Gallons-4000000)))
                 bill(code, initial, final, Gallons, Bill)
     elif code == codes1[2]:     # computing industrial bill
         if initial >= 0 and final >= 0:
             Gallons = gallons(initial, final)
             if Gallons <= 4000000:
-                Bill = 1000
+                Bill = 1000.00
                 bill(code, initial, final, Gallons, Bill)
             elif Gallons > 4000000 and Gallons <= 10000000:
-                Bill = 2000
+                Bill = 2000.00
                 bill(code, initial, final, Gallons, Bill)
             elif Gallons > 10000000:
-                Bill = (2000 + (Gallons-10000000)*0.00025)
+                Bill = (2000.00 + (Gallons-10000000)*0.00025)
                 bill(code, initial, final, Gallons, Bill)
     else:
         pass
