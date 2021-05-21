@@ -16,8 +16,6 @@ elif year:
     for line in in_file2:
         if year in line[85:]:
             in_file1.write(line)    # copying the needed data from measles file to new file input
-        elif year not in line[85:]:
-            print('Year does not exist')
+
 in_file1.close()
 in_file2.close()
-
